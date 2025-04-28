@@ -28,7 +28,7 @@ public class CPU {
                              // nesta versao acaba o sistema no fim do prog
 
     // auxilio aa depuração
-    private boolean debug; // se true entao mostra cada instrucao em execucao
+    public boolean debug; // se true entao mostra cada instrucao em execucao
     private Utilities u; // para debug (dump)
 
     public CPU(Memory _mem, boolean _debug) { // ref a MEMORIA passada na criacao da CPU

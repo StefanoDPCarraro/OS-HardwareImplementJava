@@ -14,4 +14,9 @@ public class Word {    // cada posicao da memoria tem uma instrucao (ou um dado)
         rb = _rb;
         p  = _p;
     }
+
+    @Override
+    public String toString() {
+        return opc + "[" + ra + " ," + rb + " ," + p + "]";
+    }
 }

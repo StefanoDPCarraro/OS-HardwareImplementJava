@@ -16,4 +16,11 @@ public class PCB {
         this.program = program;
         this.pc = 0; // TODO: Sempre começa como 0?? Parece que sim
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id  + "Pc: " + pc + "\n"
+        + "Tabela pags: " + tabelaPags + "\n"
+        + "Status: " + status.name();
+    }
 }

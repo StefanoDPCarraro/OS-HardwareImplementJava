@@ -9,10 +9,12 @@ public class GM {
     public boolean[] pagLivres;
     public int tamPag;
 
-    public GM(Memory memoria) {
+    public GM(Memory memoria, int tamPag) {
         this.memoria = memoria;
+        this.tamPag = tamPag;
         int numPags = memoria.pos.length / tamPag;
         pagLivres = new boolean[numPags];
+        
     }
 
     public boolean canAlloc(int numPalavras) {

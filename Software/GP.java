@@ -49,4 +49,10 @@ public class GP {
             }
         }
     }
+    public void printAllProcesses(){ //Função adicional para interface
+        for(PCB proc: processes){
+            System.out.println(proc);
+            System.out.println();
+        }
+    }
 }
