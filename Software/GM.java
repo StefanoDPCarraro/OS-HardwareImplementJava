@@ -46,13 +46,15 @@ public class GM {
         }
     }
 
-    public int[] alloc(Word[] instructions, int[] tabelaPags) {
+    public int[] alloc(Word[] instructions) {
         int numPalavras = instructions.length;
         int pagNecessarias = (int) Math.ceil(numPalavras / tamPag); // memoria.frames[0].words.length pega uma página e
                                                                     // ve o tamanho
         System.out.println("GM: Tentando alocar " + numPalavras + " palavras.");
         System.out.println("GM: Tamanho da página: " + tamPag);
         System.out.println("GM: Páginas necessárias: " + pagNecessarias);
+
+        int[] tabelaPags = new int[pagNecessarias];
 
         int count = 0;
         if (canAlloc(pagNecessarias)) {

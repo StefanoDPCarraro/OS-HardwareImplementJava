@@ -1,25 +1,52 @@
 package Software;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import Hardware.Memory.Word;
-import Programas.Programs;
 
 public class GP {
-    public Queue<Programs> processes;
+    public List<PCB> processes;
+    public Queue<PCB> ready;
+    public PCB running;
     public GM gm;
+    public int currentID;
     public GP(GM gm){
-        processes = new ArrayDeque<Programs>();
+        currentID = 0;
+        processes = new ArrayList<>();
+        running = null;
         this.gm = gm;
+        ready = new LinkedList<>();
     }
     public boolean createProcess(Word[] process){
         int tam = process.length;
         if(!gm.canAlloc(tam)){
             return false;
         }
-        // PCB pcb = new PCB();
-        // TODO: Continuar método e fazer resto do GP
+        int[] tabelaPags = gm.alloc(process);
+
+        PCB pcb = new PCB(currentID, tabelaPags, process);
+        // TODO: Continuar método e fazer resto do GP - FIla de ready
         return true;
+    }
+    public void desalocaProcesso(int id){
+        if(running.id == id){
+            gm.desaloca(running.tabelaPags);
+            processes.remove(running);
+            running = null;
+            return;
+        }
+        for(PCB proc: processes){
+            if(proc.id == id){
+                gm.desaloca(proc.tabelaPags);
+                if(proc.status == Status.READY){
+                    ready.remove(proc);
+                }
+                processes.remove(proc);
+                return;
+            }
+        }
     }
 }

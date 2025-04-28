@@ -14,5 +14,6 @@ public class PCB {
         this.tabelaPags = tabelaPags;
         this.status = status.READY;
         this.program = program;
+        this.pc = 0; // TODO: Sempre começa como 0?? Parece que sim
     }
 }
