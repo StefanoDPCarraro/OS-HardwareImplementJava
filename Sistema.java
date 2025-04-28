@@ -25,6 +25,7 @@ import java.util.*;
 import Hardware.HW;
 import Programas.Programs;
 import Software.SO;
+import java.util.Scanner;
 
 public class Sistema {
 
@@ -61,5 +62,62 @@ public class Sistema {
 	public static void main(String args[]) {
 		Sistema s = new Sistema(1024, 16);
 		s.run();
+	}
+	public int optionsConsole(){
+		Scanner in = new Scanner(System.in);
+		System.out.println("Opcoes:");
+		System.out.println("[0] new");
+		System.out.println("[1] rm");
+		System.out.println("[2] ps");
+		System.out.println("[3] dump");
+		System.out.println("[4] dumpM");
+		System.out.println("[5] exec");
+		System.out.println("[6] traceOn");
+		System.out.println("[7] traceOff");
+		System.out.println("[8] exit");
+		System.out.println("");
+		int opt = in.nextInt();
+		in.close();
+		return opt;
+	}
+
+	public int handleNew(){
+		Scanner in = new Scanner(System.in);
+		System.out.println("Selecione o programa:");
+		System.out.println("[0] fatorial");
+		System.out.println("[1] fatorialV2");
+		System.out.println("[2] progMinimo");
+		System.out.println("[3] fibonacci10");
+		System.out.println("[4] fibonacci10v2");
+		System.out.println("[5] fibonacciREAD");
+		System.out.println("[6] PB");
+		System.out.println("[7] PC");
+		int opt = in.nextInt();
+		in.close();
+		return opt;
+	}
+
+	public void handlePs(){
+		return;
+	}
+
+	public void handleDump(int id){
+		return;
+	}
+
+	public void handleDumpM(int inicio, int fim){
+		return;
+	}
+
+	public void exec(int id){
+		return;
+	}
+
+	public void traceOn(){
+		return;
+	}
+
+	public void traceOff(){
+		return;
 	}
 }
