@@ -1,0 +1,5 @@
+package Software;
+
+public enum Status {
+    RUNNING, FINISHED, READY, BLOCKED // TODO: VERIFICAR SE TODOS ESTADOS ESTÃO EM USO
+}

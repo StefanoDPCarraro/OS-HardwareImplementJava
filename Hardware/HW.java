@@ -1,7 +1,6 @@
 package Hardware;
 import Hardware.CPU.CPU;
 import Hardware.Memory.Memory;
-import Software.GM;
 
 public class HW {
     public Memory mem;
