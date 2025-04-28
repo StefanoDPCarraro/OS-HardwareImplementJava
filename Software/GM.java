@@ -1,5 +1,6 @@
 package Software;
 
+import Hardware.CPU.Opcode;
 import Hardware.Memory.Memory;
 import Hardware.Memory.Word;
 
@@ -14,7 +15,9 @@ public class GM {
         pagLivres = new boolean[numPags];
     }
 
-    public boolean canAlloc(int pagNecessarias) {
+    public boolean canAlloc(int numPalavras) {
+        int pagNecessarias = (int) Math.ceil(numPalavras / tamPag);
+
         int livres = 0;
 
         for (int i = 0; i < pagLivres.length; i++) {
@@ -30,9 +33,16 @@ public class GM {
     }
 
     public void desaloca(int[] tabelaPags) {
-        // TODO: Limpar oq ta dentro
         for (int i = 0; i < tabelaPags.length; i++) {
             pagLivres[tabelaPags[i]] = true;
+        }
+        for (int i = 0; i < tabelaPags.length; i++) {
+            System.out.println("Página [" + i + "] -> Página Física: " + tabelaPags[i]);
+            for (int offset = 0; offset < tamPag; offset++) {
+                int index = (tabelaPags[i] * tamPag) + offset; // Índice da memoria lógica (indexPag * tamPag) + offset
+                memoria.pos[index] = new Word(Opcode.___, -1, -1, -1);
+                System.out.println("Índice físico: " + index);
+            }
         }
     }
 
@@ -43,8 +53,6 @@ public class GM {
         System.out.println("GM: Tentando alocar " + numPalavras + " palavras.");
         System.out.println("GM: Tamanho da página: " + tamPag);
         System.out.println("GM: Páginas necessárias: " + pagNecessarias);
-
-        // int[] framesAlocados = new int[pagNecessarias];
 
         int count = 0;
         if (canAlloc(pagNecessarias)) {
@@ -82,4 +90,5 @@ public class GM {
             return null;
         }
     }
+    // TODO: Finalizar GM (Passo 1.4)
 }
