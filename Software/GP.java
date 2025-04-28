@@ -18,7 +18,7 @@ public class GP {
         if(!gm.canAlloc(tam)){
             return false;
         }
-        PCB pcb = new PCB();
+        // PCB pcb = new PCB();
         // TODO: Continuar método e fazer resto do GP
         return true;
     }
