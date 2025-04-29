@@ -230,7 +230,7 @@ public class Sistema {
 	public void exec(){
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
-		// USELESS?? Não tem escalonador
+		// USELESS?? Tem escalonador
 		return;
 	}
 
