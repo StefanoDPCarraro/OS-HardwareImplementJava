@@ -4,19 +4,14 @@ import Hardware.Memory.Word;
 
 public class Utilities {
     private HW hw;
+    private GP gp;
 
     public Utilities(HW _hw) {
         hw = _hw;
     }
 
     private void loadProgram(Word[] p) {
-        Word[] m = hw.mem.pos; // m[] é o array de posições memória do hw
-        for (int i = 0; i < p.length; i++) {
-            m[i].opc = p[i].opc;
-            m[i].ra = p[i].ra;
-            m[i].rb = p[i].rb;
-            m[i].p = p[i].p;
-        }
+        gp.createProcess(p);
     }
 
     // dump da memória

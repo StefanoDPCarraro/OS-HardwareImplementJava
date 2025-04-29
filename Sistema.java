@@ -23,6 +23,7 @@
 import java.util.*;
 
 import Hardware.HW;
+import Hardware.Memory.Word;
 import Programas.Programs;
 import Software.PCB;
 import Software.SO;
@@ -51,9 +52,12 @@ public class Sistema {
 
 		
 		// TODO: Nao registra na tabela
-		so.utils.loadAndExec(progs.retrieveProgram("fatorialV2"));
-
-		handleShowOptions(optionsConsole());
+		/* so.utils.loadAndExec(progs.retrieveProgram("fatorialV2")); */
+		while(true){
+			handleShowOptions(optionsConsole());
+			handleShowOptions(optionsConsole());
+			hw.cpu.run();
+		}
 
 		// so.utils.loadAndExec(progs.retrieveProgram("fatorial"));
 		// fibonacci10,
@@ -72,7 +76,10 @@ public class Sistema {
 		switch (option) {
 			case 0:
 				// TODO: Implement and test
-				handleNew();
+				String progName = handleNew(optionsNew());
+				Word[] prog = progs.retrieveProgram(progName);
+				boolean criou = so.gp.createProcess(prog);
+				System.out.println(criou);
 				break;
 
 			case 1:
@@ -112,6 +119,48 @@ public class Sistema {
 				break;
 		}
 	}
+	public String handleNew(int optionsNew){
+		// TODO: Test all
+		String resp = "";
+		switch (optionsNew) {
+			case 0:
+				resp = "fatorial";
+				break;
+			
+			case 1:
+				resp = "fatorialV2";
+				break;
+			
+			case 2:
+				resp = "progMinimo";
+				break;
+
+			case 3:
+				resp = "fibonacci10";
+				break;
+
+			case 4:
+				resp = "fibonacci10V2";
+				break;
+			
+			case 5:
+				resp = "fibonacciREAD";
+				break;
+			
+			case 6:
+				resp = "PB";
+				break;
+
+			case 7:
+				resp = "PC";
+				break;
+
+
+			default:
+				break;
+		}
+		return resp;
+	}
 	public int optionsConsole(){
 		Scanner in = new Scanner(System.in);
 		System.out.println("Opcoes:");
@@ -126,11 +175,9 @@ public class Sistema {
 		System.out.println("[8] exit");
 		System.out.println("");
 		int opt = in.nextInt();
-		in.close();
 		return opt;
 	}
-
-	public int handleNew(){
+	public int optionsNew(){
 		Scanner in = new Scanner(System.in);
 		System.out.println("Selecione o programa:");
 		System.out.println("[0] fatorial");
@@ -142,7 +189,6 @@ public class Sistema {
 		System.out.println("[6] PB");
 		System.out.println("[7] PC");
 		int opt = in.nextInt();
-		in.close();
 		return opt;
 	}
 
@@ -173,14 +219,12 @@ public class Sistema {
 		Scanner in = new Scanner(System.in);
 		int inicio = in.nextInt();
 		int fim = in.nextInt();
-		in.close();
 		return;
 	}
 
 	public void exec(){
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
-		in.close();
 		return;
 	}
 

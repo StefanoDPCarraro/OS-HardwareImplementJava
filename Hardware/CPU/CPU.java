@@ -2,6 +2,7 @@ package Hardware.CPU;
 
 import Hardware.Memory.Memory;
 import Hardware.Memory.Word;
+import Software.GP;
 import Software.Utilities;
 import Software.Handlings.InterruptHandling;
 import Software.Handlings.SysCallHandling;
@@ -30,6 +31,7 @@ public class CPU {
     // auxilio aa depuração
     public boolean debug; // se true entao mostra cada instrucao em execucao
     private Utilities u; // para debug (dump)
+    public GP gp;
 
     public CPU(Memory _mem, boolean _debug) { // ref a MEMORIA passada na criacao da CPU
         maxInt = 32767; // capacidade de representacao modelada
@@ -48,6 +50,10 @@ public class CPU {
 
     public void setUtilities(Utilities _u) {
         u = _u; // aponta para rotinas utilitárias - fazer dump da memória na tela
+    }
+
+    public void setGM(GP _gp){
+        gp = _gp;
     }
 
     // verificação de enderecamento
@@ -84,6 +90,7 @@ public class CPU {
 
             // --------------------------------------------------------------------------------------------------
             // FASE DE FETCH
+            /* int adress = gm.traduzir(reg, pc); //TODO: Mudar o endereço para apontar no fisico correspondente */
             if (legal(pc)) { // pc valido
                 ir = m[pc]; // <<<<<<<<<<<< AQUI faz FETCH - busca posicao da memoria apontada por pc,
                             // guarda em ir

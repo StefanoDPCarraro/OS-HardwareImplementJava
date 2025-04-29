@@ -11,19 +11,31 @@ public class GM {
 
     public GM(Memory memoria, int tamPag) {
         this.memoria = memoria;
+        System.out.println("Memoria: " + memoria);
         this.tamPag = tamPag;
+        System.out.println("TamPag: " + tamPag);
         int numPags = memoria.pos.length / tamPag;
+        System.out.println("Mem length: " + memoria.pos.length);
+        System.out.println("NumPags: " + numPags);
         pagLivres = new boolean[numPags];
-        
+        System.out.println("PagLivres: " + pagLivres);
+        freePages();
+    }
+
+    public void freePages(){
+        for(int i = 0; i < pagLivres.length; i++){
+            pagLivres[i] = true;
+        }
     }
 
     public boolean canAlloc(int numPalavras) {
-        int pagNecessarias = (int) Math.ceil(numPalavras / tamPag);
+        int pagNecessarias = (int) Math.ceil((double)numPalavras / tamPag);
 
         int livres = 0;
 
         for (int i = 0; i < pagLivres.length; i++) {
-            if (pagLivres[i]) {
+            System.out.println(pagLivres[i]);
+            if (pagLivres[i] == true) {
                 livres++;
             }
         }
@@ -50,7 +62,7 @@ public class GM {
 
     public int[] alloc(Word[] instructions) {
         int numPalavras = instructions.length;
-        int pagNecessarias = (int) Math.ceil(numPalavras / tamPag); // memoria.frames[0].words.length pega uma página e
+        int pagNecessarias = (int) Math.ceil((double)numPalavras / tamPag); // memoria.frames[0].words.length pega uma página e
                                                                     // ve o tamanho
         System.out.println("GM: Tentando alocar " + numPalavras + " palavras.");
         System.out.println("GM: Tamanho da página: " + tamPag);
@@ -76,7 +88,7 @@ public class GM {
                 System.out.println("  Página " + i + " → Frame " + tabelaPags[i]);
             }
             int intructionsCount = 0;
-            for (int i = 0; intructionsCount < instructions.length; i++) {
+            for (int i = 0; i < tabelaPags.length; i++) {
                 System.out.println("Página [" + i + "] -> Página Física: " + tabelaPags[i]);
                 for (int offset = 0; offset < tamPag; offset++) {
                     int index = (tabelaPags[i] * tamPag) + offset;
@@ -86,6 +98,9 @@ public class GM {
                                     " (valor: " + instructions[intructionsCount] +
                                     ") no índice físico " + index);
                     intructionsCount++;
+                    if(intructionsCount >= instructions.length){
+                        break;
+                    }
                 }
             }
             return tabelaPags;

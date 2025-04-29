@@ -28,6 +28,8 @@ public class GP {
         int[] tabelaPags = gm.alloc(process);
 
         PCB pcb = new PCB(currentID, tabelaPags, process);
+        currentID++;
+        processes.add(pcb);
         // TODO: Continuar método e fazer resto do GP - FIla de ready
         return true;
     }
