@@ -1,5 +1,6 @@
 package Software.Handlings;
 import Hardware.HW;
+import Software.Status;
 
 public class SysCallHandling {
     private HW hw; // referencia ao hw se tiver que setar algo
@@ -11,6 +12,8 @@ public class SysCallHandling {
     public void stop() { // chamada de sistema indicando final de programa
                          // nesta versao cpu simplesmente pára
         System.out.println("                                               SYSCALL STOP");
+        hw.cpu.gp.running.status = Status.FINISHED;
+        hw.cpu.gp.running = null;
     }
 
     public void handle() { // chamada de sistema 

@@ -38,6 +38,7 @@ public class Sistema {
 	public HW hw;
 	public SO so;
 	public Programs progs;
+	public boolean run;
 
 	public Sistema(int tamMem, int tamFrame, int robin) {
 		hw = new HW(tamMem, tamFrame, robin);   // memoria do HW tem tamMem palavras e tamPag para frames
@@ -52,7 +53,8 @@ public class Sistema {
 		
 		// TODO: Nao registra na tabela
 		/* so.utils.loadAndExec(progs.retrieveProgram("fatorialV2")); */
-		while(true){
+		run = true;
+		while(run){
 			handleShowOptions(optionsConsole());
 		}
 
@@ -113,7 +115,14 @@ public class Sistema {
 				break;
 
 			case 8:
-				hw.cpu.run();
+				Thread cpuThread = new Thread(hw.cpu);
+				cpuThread.start();
+				break;
+
+			case 9:
+				hw.cpu.runningThread = false;
+				run = false;
+				break;
 
 			default:
 				break;
