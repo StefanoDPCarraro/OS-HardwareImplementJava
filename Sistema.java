@@ -20,8 +20,6 @@
 //    Veja o main.  Ele instancia o Sistema com os elementos mencionados acima.
 //           em seguida solicita a execução de algum programa com  loadAndExec
 
-import java.util.*;
-
 import Hardware.HW;
 import Hardware.Memory.Word;
 import Programas.Programs;
@@ -232,6 +230,7 @@ public class Sistema {
 	public void exec(){
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
+		// USELESS?? Não tem escalonador
 		return;
 	}
 
