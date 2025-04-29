@@ -100,6 +100,7 @@ public class CPU {
         if (gp.running == null) {
             if (!gp.ready.isEmpty()) {
                 gp.running = gp.ready.remove();
+                pc = gp.running.context.pc;
             }
         }
         if (gp.running != null) {
@@ -114,9 +115,10 @@ public class CPU {
                  * fisico correspondente
                  */
                 if (legal(pc)) { // pc valido
-                    ir = m[gp.gm.traduzir(gp.running.tabelaPags, pc)]; // <<<<<<<<<<<< AQUI faz FETCH - busca posicao da memoria apontada por pc,
-                                // guarda em ir
-                                // resto é dump de debug
+                    ir = m[gp.gm.traduzir(gp.running.tabelaPags, pc)]; // <<<<<<<<<<<< AQUI faz FETCH - busca posicao da
+                                                                       // memoria apontada por pc,
+                    // guarda em ir
+                    // resto é dump de debug
                     if (debug) {
                         System.out.print("                                              regs: ");
                         for (int i = 0; i < 10; i++) {
@@ -305,17 +307,18 @@ public class CPU {
                     }
                     logicalClock++;
                 }
-            }
-            // --------------------------------------------------------------------------------------------------
-            // VERIFICA INTERRUPÇÃO !!! - TERCEIRA FASE DO CICLO DE INSTRUÇÕES
-            if (irpt != Interrupts.noInterrupt) { // existe interrupção
-                ih.handle(irpt); // desvia para rotina de tratamento - esta rotina é do SO
-                cpuStop = true; // nesta versao, para a CPU
-            }
+                // --------------------------------------------------------------------------------------------------
+                // VERIFICA INTERRUPÇÃO !!! - TERCEIRA FASE DO CICLO DE INSTRUÇÕES
+                if (irpt != Interrupts.noInterrupt) { // existe interrupção
+                    ih.handle(irpt); // desvia para rotina de tratamento - esta rotina é do SO
+                    cpuStop = true; // nesta versao, para a CPU
+                }
 
-            if (logicalClock >= robin) {
-                irpt = Interrupts.intTime;
-                ih.handleTimer(irpt, pc, gp.running.id);
+                if (logicalClock >= robin) {
+                    irpt = Interrupts.intTime;
+                    ih.handleTimer(irpt, pc, gp.running.id);
+                    logicalClock = 0;
+                }
             }
         } // FIM DO CICLO DE UMA INSTRUÇÃO
     }
