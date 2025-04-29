@@ -34,12 +34,15 @@ public class GP {
         return true;
     }
     public void desalocaProcesso(int id){
-        if(running.id == id){
-            gm.desaloca(running.tabelaPags);
-            processes.remove(running);
-            running = null;
-            return;
+        if(running != null){
+            if(running.id == id){
+                gm.desaloca(running.tabelaPags);
+                processes.remove(running);
+                running = null;
+                return;
+            }
         }
+     
         for(PCB proc: processes){
             if(proc.id == id){
                 gm.desaloca(proc.tabelaPags);

@@ -84,12 +84,12 @@ public class Sistema {
 
 			case 1:
 				// TODO: Handle RM
+				handleRemove();
+				break;
 
 			case 2:
-				// TODO: Test
-				System.out.println("Começo CASE 2");
+				// TODO: Test (WORKING)
 				handlePs();
-				System.out.println("Fim CASE 2");
 				break;
 		
 			case 3:
@@ -103,7 +103,7 @@ public class Sistema {
 				break;
 
 			case 5:
-				//TODO: Implement
+				//TODO: Implement?? Not useful
 				exec();
 				break;
 			
@@ -192,6 +192,12 @@ public class Sistema {
 		return opt;
 	}
 
+	public void handleRemove(){
+		Scanner in = new Scanner(System.in);
+		int id = in.nextInt();
+		so.gp.desalocaProcesso(id);
+	}
+
 	public void handlePs(){
 		so.gp.printAllProcesses();
 		return;
@@ -209,9 +215,7 @@ public class Sistema {
 				System.out.println(count + " - " + so.gm.memoria.pos[index]);
 				count++;
 			}
-			// TODO: Print pags
 		}
-		in.close();
 		return;
 	}
 
@@ -219,6 +223,9 @@ public class Sistema {
 		Scanner in = new Scanner(System.in);
 		int inicio = in.nextInt();
 		int fim = in.nextInt();
+		for(int i = inicio; i <= fim; i++){
+			System.out.println(i + " - " + so.gm.memoria.pos[i]);
+		}
 		return;
 	}
 

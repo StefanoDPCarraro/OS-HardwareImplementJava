@@ -20,9 +20,28 @@ public class PCB {
 
     @Override
     public String toString() {
+
+        StringBuilder tabPagsStringBuilder = new StringBuilder();
+        tabPagsStringBuilder.append("[");
+        for(int i = 0; i < tabelaPags.length; i++){
+            tabPagsStringBuilder.append(tabelaPags[i] + ", ");
+        }
+        tabPagsStringBuilder.append("]");
+
+        String tabPagsToString = tabPagsStringBuilder.toString();
+        
+        StringBuilder registradoresStringBuilder = new StringBuilder();
+        registradoresStringBuilder.append("[");
+        for(int i = 0; i < context.registers.length; i++){
+            registradoresStringBuilder.append(context.registers[i] + ", ");
+        }
+        registradoresStringBuilder.append("]");
+
+        String registradoresToString = registradoresStringBuilder.toString();
+
         return "Id: " + id  + "      Pc: " + context.pc + "\n"
-        + "Tabela pags: " + tabelaPags + "\n"
+        + "Tabela pags: " + tabPagsToString + "\n"
         + "Status: " + status.name() + "\n"
-        + "Registradores: " + context.registers;
+        + "Registradores: " + registradoresToString;
     }
 }
