@@ -6,8 +6,8 @@ public class HW {
     public Memory mem;
     public CPU cpu;
 
-    public HW(int tamMem, int tamPag) {
+    public HW(int tamMem, int tamPag, int robin) {
         mem = new Memory(tamMem);
-        cpu = new CPU(mem, true); // true liga debug
+        cpu = new CPU(mem, true, robin); // true liga debug
     }
 }

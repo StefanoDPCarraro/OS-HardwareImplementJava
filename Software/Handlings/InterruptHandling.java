@@ -1,6 +1,7 @@
 package Software.Handlings;
 import Hardware.HW;
 import Hardware.CPU.Interrupts;
+import Software.Context;
 
 public class InterruptHandling {
     private HW hw; // referencia ao hw se tiver que setar algo
@@ -13,5 +14,12 @@ public class InterruptHandling {
         // apenas avisa - todas interrupcoes neste momento finalizam o programa
         System.out.println(
                 "                                               Interrupcao " + irpt + "   pc: " + hw.cpu.pc);
+    }
+
+    public void handleTimer(Interrupts irpt, int pc, int id){
+        System.out.println("Timer Interrupt -  PC=" + pc + " - ID="+id);
+        Context ctx = new Context(hw.cpu.pc, hw.cpu.reg);
+        hw.cpu.gp.running.context = ctx;
+        
     }
 }

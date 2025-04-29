@@ -39,10 +39,11 @@ public class Sistema {
 	public SO so;
 	public Programs progs;
 
-	public Sistema(int tamMem, int tamFrame) {
-		hw = new HW(tamMem, tamFrame);   // memoria do HW tem tamMem palavras e tamPag para frames
+	public Sistema(int tamMem, int tamFrame, int robin) {
+		hw = new HW(tamMem, tamFrame, robin);   // memoria do HW tem tamMem palavras e tamPag para frames
 		so = new SO(hw, tamFrame);
 		hw.cpu.setUtilities(so.utils); // permite cpu fazer dump de memoria ao avancar
+		hw.cpu.gp = so.gp;
 		progs = new Programs();
 	}
 
@@ -53,8 +54,6 @@ public class Sistema {
 		/* so.utils.loadAndExec(progs.retrieveProgram("fatorialV2")); */
 		while(true){
 			handleShowOptions(optionsConsole());
-			handleShowOptions(optionsConsole());
-			hw.cpu.run();
 		}
 
 		// so.utils.loadAndExec(progs.retrieveProgram("fatorial"));
@@ -67,7 +66,7 @@ public class Sistema {
 		// PC, // bubble sort
 	}
 	public static void main(String args[]) {
-		Sistema s = new Sistema(1024, 16);
+		Sistema s = new Sistema(1024, 16, 3);
 		s.run();
 	}
 	public void handleShowOptions(int option){
@@ -112,6 +111,9 @@ public class Sistema {
 			case 7:
 				traceOff();
 				break;
+
+			case 8:
+				hw.cpu.run();
 
 			default:
 				break;
@@ -170,7 +172,8 @@ public class Sistema {
 		System.out.println("[5] exec");
 		System.out.println("[6] traceOn");
 		System.out.println("[7] traceOff");
-		System.out.println("[8] exit");
+		System.out.println("[8] advance cpu");
+		System.out.println("[9] exit");
 		System.out.println("");
 		int opt = in.nextInt();
 		return opt;
