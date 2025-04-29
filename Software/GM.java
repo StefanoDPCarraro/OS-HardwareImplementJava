@@ -94,5 +94,14 @@ public class GM {
             return null;
         }
     }
-    // TODO: Finalizar GM (Passo 1.4)
+
+    public int traduzir(int[] tabelaPags, int pc){
+        // TODO: Finalizar GM (Passo 1.4) ?? FOI ISSO??
+        int pagLogica = pc/tamPag;
+        int offset = pc%tamPag;
+        int traducao = (tabelaPags[pagLogica] * tamPag) + offset;
+        System.out.println("PC="+pc+" PagLogica="+pagLogica+" Traducao="+traducao);
+        return traducao;
+    }
+    
 }

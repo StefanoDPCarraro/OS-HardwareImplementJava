@@ -49,8 +49,11 @@ public class Sistema {
 
 	public void run() {
 
-
+		
+		// TODO: Nao registra na tabela
 		so.utils.loadAndExec(progs.retrieveProgram("fatorialV2"));
+
+		handleShowOptions(optionsConsole());
 
 		// so.utils.loadAndExec(progs.retrieveProgram("fatorial"));
 		// fibonacci10,
@@ -77,7 +80,9 @@ public class Sistema {
 
 			case 2:
 				// TODO: Test
+				System.out.println("Começo CASE 2");
 				handlePs();
+				System.out.println("Fim CASE 2");
 				break;
 		
 			case 3:
