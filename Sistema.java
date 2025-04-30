@@ -51,7 +51,6 @@ public class Sistema {
 	public void run() {
 
 		
-		// TODO: Nao registra na tabela
 		/* so.utils.loadAndExec(progs.retrieveProgram("fatorialV2")); */
 		run = true;
 		while(run){
@@ -74,7 +73,6 @@ public class Sistema {
 	public void handleShowOptions(int option){
 		switch (option) {
 			case 0:
-				// TODO: Implement and test
 				String progName = handleNew(optionsNew());
 				Word[] prog = progs.retrieveProgram(progName);
 				int id = so.gp.createProcess(prog);
@@ -82,27 +80,22 @@ public class Sistema {
 				break;
 
 			case 1:
-				// TODO: Handle RM
 				handleRemove();
 				break;
 
 			case 2:
-				// TODO: Test (WORKING)
 				handlePs();
 				break;
 		
 			case 3:
-				// TODO: Finish
 				handleDump();
 				break;
 
 			case 4:
-				// TODO: Implement
 				handleDumpM();
 				break;
 
 			case 5:
-				//TODO: Implement?? Not useful
 				exec();
 				break;
 			
@@ -129,7 +122,6 @@ public class Sistema {
 		}
 	}
 	public String handleNew(int optionsNew){
-		// TODO: Test all
 		String resp = "";
 		switch (optionsNew) {
 			case 0:

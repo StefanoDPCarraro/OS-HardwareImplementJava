@@ -3,9 +3,9 @@ package Hardware.CPU;
 import Hardware.Memory.Memory;
 import Hardware.Memory.Word;
 import Software.GP;
-import Software.Utilities;
 import Software.Handlings.InterruptHandling;
 import Software.Handlings.SysCallHandling;
+import Software.Utilities;
 
 public class CPU implements Runnable {
     private int maxInt; // valores maximo e minimo para inteiros nesta cpu
@@ -88,12 +88,12 @@ public class CPU implements Runnable {
         if (gp.running != null) {
             gp.ready.add(gp.running); // Tira o atual
             gp.running = gp.ready.remove(); // Bota o proximo da fila e tira ele do ready
-            return; // TODO: Deve faltar algo aqui
+            return;
         }
         // while(true){
         if (!gp.ready.isEmpty()) {
             gp.running = gp.ready.remove();
-            return; // TODO: Deve faltar algo aqui
+            return;
         }
         // }
     }
@@ -122,8 +122,7 @@ public class CPU implements Runnable {
                 // --------------------------------------------------------------------------------------------------
                 // FASE DE FETCH
                 /*
-                 * int adress = gm.traduzir(reg, pc); //TODO: Mudar o endereço para apontar no
-                 * fisico correspondente
+                 * int adress = gm.traduzir(reg, pc);
                  */
                 if (legal(pc)) { // pc valido
                     ir = m[gp.gm.traduzir(gp.running.tabelaPags, pc)]; // <<<<<<<<<<<< AQUI faz FETCH - busca posicao da

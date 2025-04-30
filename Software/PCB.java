@@ -7,7 +7,7 @@ public class PCB {
     public int[] tabelaPags;
     public Word[] program;
 
-    public Context context; // TODO: Usa registrador?? Ou só pc?? Outra, PC começa do 0 e é interno ou do inicio do programa na memoria e é externo??
+    public Context context;
     public Status status;
 
     public PCB(int id, int[] tabelaPags, Word[] program){
@@ -15,7 +15,7 @@ public class PCB {
         this.tabelaPags = tabelaPags;
         this.status = Status.READY;
         this.program = program;
-        this.context = new Context(0, new int[10]); // TODO: Sempre começa como 0?? Parece que sim
+        this.context = new Context(0, new int[10]);
     }
 
     @Override
