@@ -20,10 +20,10 @@ public class GP {
         this.gm = gm;
         ready = new LinkedList<>();
     }
-    public boolean createProcess(Word[] process){
+    public int createProcess(Word[] process){
         int tam = process.length;
         if(!gm.canAlloc(tam)){
-            return false;
+            return -1;
         }
         int[] tabelaPags = gm.alloc(process);
 
@@ -31,8 +31,7 @@ public class GP {
         currentID++;
         processes.add(pcb);
         ready.add(pcb);
-        // TODO: Continuar método e fazer resto do GP - Fila de ready
-        return true;
+        return pcb.id;
     }
     public void desalocaProcesso(int id){
         if(running != null){

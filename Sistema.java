@@ -77,8 +77,8 @@ public class Sistema {
 				// TODO: Implement and test
 				String progName = handleNew(optionsNew());
 				Word[] prog = progs.retrieveProgram(progName);
-				boolean criou = so.gp.createProcess(prog);
-				System.out.println(criou);
+				int id = so.gp.createProcess(prog);
+				System.out.println("Criado, processo id: " + id);
 				break;
 
 			case 1:
@@ -242,7 +242,14 @@ public class Sistema {
 	public void exec(){
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
-		// USELESS?? Tem escalonador
+		for(PCB proc: so.gp.processes){
+			if(proc.id == id){
+				if(so.gp.running != null){
+					so.gp.ready.add(so.gp.running);
+				}
+				so.gp.running = proc;
+			}
+		}
 		return;
 	}
 
