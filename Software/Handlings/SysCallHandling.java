@@ -1,5 +1,6 @@
 package Software.Handlings;
 import Hardware.HW;
+import Software.Context;
 import Software.Status;
 
 public class SysCallHandling {
@@ -12,6 +13,7 @@ public class SysCallHandling {
     public void stop() { // chamada de sistema indicando final de programa
                          // nesta versao cpu simplesmente pára
         System.out.println("                                               SYSCALL STOP");
+        hw.cpu.gp.running.context = new Context(hw.cpu.pc, hw.cpu.reg);
         hw.cpu.gp.running.status = Status.FINISHED;
         if(!hw.cpu.debug){
             hw.cpu.gp.desalocaProcesso(hw.cpu.gp.running.id);
