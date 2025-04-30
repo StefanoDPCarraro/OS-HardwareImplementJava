@@ -31,7 +31,7 @@ public class GP {
         currentID++;
         processes.add(pcb);
         ready.add(pcb);
-        // TODO: Continuar método e fazer resto do GP - FIla de ready
+        // TODO: Continuar método e fazer resto do GP - Fila de ready
         return true;
     }
     public void desalocaProcesso(int id){

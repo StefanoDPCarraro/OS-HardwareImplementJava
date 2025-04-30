@@ -13,6 +13,9 @@ public class SysCallHandling {
                          // nesta versao cpu simplesmente pára
         System.out.println("                                               SYSCALL STOP");
         hw.cpu.gp.running.status = Status.FINISHED;
+        if(!hw.cpu.debug){
+            hw.cpu.gp.desalocaProcesso(hw.cpu.gp.running.id);
+        }
         hw.cpu.gp.running = null;
     }
 
