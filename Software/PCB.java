@@ -13,7 +13,7 @@ public class PCB {
     public PCB(int id, int[] tabelaPags, Word[] program){
         this.id = id;
         this.tabelaPags = tabelaPags;
-        this.status = status.READY;
+        this.status = Status.READY;
         this.program = program;
         this.context = new Context(0, new int[10]); // TODO: Sempre começa como 0?? Parece que sim
     }

@@ -100,7 +100,7 @@ public class CPU implements Runnable{
         while(runningThread){
                         // esta devidamente setado
             try{
-                Thread.sleep(3000);
+                Thread.sleep(100);
             } catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }

@@ -111,7 +111,7 @@ public class GM {
     }
 
     public int traduzir(int[] tabelaPags, int pc){
-        // TODO: Finalizar GM (Passo 1.4) ?? FOI ISSO??
+        // TODO: Finalizar GM (Passo 1.4) ?? FOI ISSO?? PROTEÇÃO DE MEMORIA
         int pagLogica = pc/tamPag;
         int offset = pc%tamPag;
         int traducao = (tabelaPags[pagLogica] * tamPag) + offset;
