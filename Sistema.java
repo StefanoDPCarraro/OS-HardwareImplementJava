@@ -67,7 +67,10 @@ public class Sistema {
 		// PC, // bubble sort
 	}
 	public static void main(String args[]) {
-		Sistema s = new Sistema(1024, 16, 3);
+		Sistema s = new Sistema(1024, 16, 6);
+		/* s.so.gm.pagLivres[1] = false;
+		s.so.gm.pagLivres[3] = false;
+		s.so.gm.pagLivres[5] = false; */  //Para o teste em aula
 		s.run();
 	}
 	public void handleShowOptions(int option){

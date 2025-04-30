@@ -105,6 +105,7 @@ public class Programs {
                             new Word(Opcode.DATA, -1, -1, -1),
                             new Word(Opcode.DATA, -1, -1, -1),
                             new Word(Opcode.DATA, -1, -1, -1),
+                            new Word(Opcode.DATA, -1, -1, -1), // FALTAVA 1 DATA
                             new Word(Opcode.DATA, -1, -1, -1) // ate aqui - serie de fibonacci ficara armazenada
                     }),
 

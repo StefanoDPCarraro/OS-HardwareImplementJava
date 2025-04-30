@@ -25,6 +25,7 @@ public class InterruptHandling {
         System.out.println("Timer Interrupt -  PC=" + pc + " - ID="+id);
         Context ctx = new Context(hw.cpu.pc, hw.cpu.reg);
         hw.cpu.gp.running.context = ctx;
+        hw.cpu.gp.running.status = Status.READY;
         hw.cpu.gp.ready.add(hw.cpu.gp.running);
         hw.cpu.gp.running = null;
     }

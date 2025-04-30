@@ -3,6 +3,7 @@ package Hardware.CPU;
 import Hardware.Memory.Memory;
 import Hardware.Memory.Word;
 import Software.GP;
+import Software.Status;
 import Software.Handlings.InterruptHandling;
 import Software.Handlings.SysCallHandling;
 import Software.Utilities;
@@ -110,6 +111,7 @@ public class CPU implements Runnable {
             if (gp.running == null) {
                 if (!gp.ready.isEmpty()) {
                     gp.running = gp.ready.remove();
+                    gp.running.status = Status.RUNNING;
                     pc = gp.running.context.pc;
                     reg = gp.running.context.registers;
                 }
